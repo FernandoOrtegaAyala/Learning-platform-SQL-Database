@@ -1,29 +1,29 @@
--- Verificación de las DB
+-- DB Verification
 SHOW DATABASES;
 
--- Creación de la DB
-CREATE DATABASE plataforma_aprendizaje;
+-- DB creation
+CREATE DATABASE LearningPlatform;
 
--- Utilizacion de la DB actual
-USE plataforma_aprendizaje;
+-- Use of the current DB
+USE LearningPlatform;
 
--- Verificacion de las tablas en la DB
+-- Verification of tables in the DB
 SHOW TABLES;
 
--- Creación de la tabla usuarios
-CREATE TABLE usuarios (
-	id_usuario INT AUTO_INCREMENT PRIMARY KEY,
-	nombre VARCHAR(30) NOT NULL,
-	apellidos VARCHAR(30) NOT NULL,
-	es_administrador TINYINT(1) DEFAULT 0,
-	fecha_registro DATETIME DEFAULT CURRENT_TIMESTAMP,
+-- Creation of the user table
+CREATE TABLE users (
+	id_user INT AUTO_INCREMENT PRIMARY KEY,
+	first_name VARCHAR(30) NOT NULL,
+	last_name VARCHAR(30) NOT NULL,
+	is_administrator TINYINT(1) DEFAULT 0,
+	registration_date DATETIME DEFAULT CURRENT_TIMESTAMP,
 	email VARCHAR(45) UNIQUE NOT NULL,
-	contraseña VARCHAR(45) NOT NULL,
+	password VARCHAR(45) NOT NULL,
 	avatar VARCHAR(255)
 );
 
--- Insertar datos de prueba en usuarios
-INSERT INTO usuarios (nombre, apellidos, es_administrador, fecha_registro, email, contraseña, avatar)
+-- Insert test data into users
+INSERT INTO users (first_name, last_name, is_administrator, registration_date, email, password, avatar)
 	VALUES
 	("Juan", "Morales Hernández", 1, "2022-08-20 07:25:41", "administrador99@correo.com",
 	"admin2527140", "https://img.freepik.com/free-vector/illustration-user-avatar-icon_53876-5907.jpg?w=826&t=st=1700959317~exp=1700959917~hmac=2611e21dddab6ee5d612b4a62bfc5108b1526c3f58be3878462ac143def5c149"),
@@ -36,23 +36,23 @@ INSERT INTO usuarios (nombre, apellidos, es_administrador, fecha_registro, email
 	("Jorge", "González Gómez", 0, "2022-12-10 11:25:41", "usuario99@correo.com",
 	"usuario2527140", "https://img.freepik.com/free-vector/illustration-user-avatar-icon_53876-5907.jpg?w=826&t=st=1700959317~exp=1700959917~hmac=2611e21dddab6ee5d612b4a62bfc5108b1526c3f58be3878462ac143def5c149");
 	
--- Verificación de los datos de prueba en usuarios
+-- Verifying test data in users
 SELECT *
-FROM usuarios;
+FROM users;
 
--- Creación de la tabla instructores
-CREATE TABLE instructores (
+-- Creation of the instructors table
+CREATE TABLE instructors (
 	id_instructor INT AUTO_INCREMENT PRIMARY KEY,
-	nombre_instructor VARCHAR(55) NOT NULL,
-	especialidad VARCHAR(55) NOT NULL,
-	experiencia VARCHAR(255) NOT NULL
+	instructor_name VARCHAR(55) NOT NULL,
+	specialty VARCHAR(55) NOT NULL,
+	experience VARCHAR(255) NOT NULL
 );
 
--- Insertar datos de prueba en instructores
-INSERT INTO instructores (nombre_instructor, especialidad, experiencia) 
+-- Insert test data into instructors
+INSERT INTO instructors (instructor_name, specialty, experience) 
 	VALUES
 	("Luisa García Hernández", "Programación en Python", "5 años de enseñanza en universidad. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip."),
-	("Jorge Pérez Rodríguez", "Diseño Gráfico Avanzado", "10 años de enseñanza en escuela preparatoria. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip."),
+	("Jorge Pérez Rodríguez", "Diseño Gráfico Advanced", "10 años de enseñanza en escuela preparatoria. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip."),
 	("María Fernández López", "Marketing Digital ", "3 años de enseñanza en universidad. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip."),
 	("Juan Carlos Torres", "Fotografía Creativa", "7 años de enseñanza en escuela preparatoria. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip."),
 	("Sofía González Martínez", "Finanzas Personales", "2 años de enseñanza en escuela preparatoria. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip."),
@@ -60,70 +60,70 @@ INSERT INTO instructores (nombre_instructor, especialidad, experiencia)
 	("Ana Torres Sánchez", "Desarrollo Web", "6 años de enseñanza en universidad. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip."),
 	("Carlos Hernández Flores", "Inteligencia Artificial", "1 año de enseñanza en universidad. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip.");
 
--- Verificación de los datos de prueba en instructores
+-- Verification of test data on instructors
 SELECT *
-FROM instructores;
+FROM instructors;
 
--- Creación de la tabla cursos
-CREATE TABLE cursos (
-	id_curso INT AUTO_INCREMENT PRIMARY KEY,
-	titulo_curso VARCHAR(200) NOT NULL,
-	descripción VARCHAR(255) NOT NULL,
-	portada_URL VARCHAR(255) NOT NULL,
-	duración VARCHAR(200) NOT NULL,
-	nivel ENUM ("Principiante", "Intermedio", "Avanzado") NOT NULL,
-	fecha_publicación DATETIME DEFAULT CURRENT_TIMESTAMP,
-	estudiantes_inscritos INT DEFAULT 0,
-	valoraciones DECIMAL(2,2) UNSIGNED DEFAULT 0.0,
+-- Creation of the courses table
+CREATE TABLE courses (
+	id_course INT AUTO_INCREMENT PRIMARY KEY,
+	course_title VARCHAR(200) NOT NULL,
+	description VARCHAR(255) NOT NULL,
+	cover_URL VARCHAR(255) NOT NULL,
+	duration VARCHAR(200) NOT NULL,
+	level ENUM ("Beginner", "Intermediate", "Advanced") NOT NULL,
+	publication_date DATETIME DEFAULT CURRENT_TIMESTAMP,
+	enrolled_students INT DEFAULT 0,
+	ratings DECIMAL(2,2) UNSIGNED DEFAULT 0.0,
 	id_instructor INT,
-	FOREIGN KEY (id_instructor) REFERENCES instructores(id_instructor)
+	FOREIGN KEY (id_instructor) REFERENCES instructors(id_instructor)
 );
 
--- Insertar datos de prueba en cursos
-INSERT INTO cursos (titulo_curso, descripción, portada_URL, duración, nivel, 
-	fecha_publicación, id_instructor)
+-- Insert test data into courses
+INSERT INTO courses (course_title, description, cover_URL, duration, level, 
+	publication_date, id_instructor)
 	VALUES
-	("Python Avanzado: Desarrollo y Optimización", "Sumérgete en el mundo avanzado de Python, desde técnicas de desarrollo hasta estrategias de optimización para aplicaciones robustas.",
+	("Python Advanced: Desarrollo y Optimización", "Sumérgete en el mundo avanzado de Python, desde técnicas de desarrollo hasta estrategias de optimización para aplicaciones robustas.",
 	"https://img.freepik.com/free-photo/person-working-html-computer_23-2150040424.jpg?w=1380&t=st=1702261474~exp=1702262074~hmac=b0188b8d253c46c1eeeaa45e984129f6e0942b07912ea5ea35289b5a6b061f4b",
-	"8 semanas", "Avanzado", "2023-09-12 08:30:00", 1),
-	("Diseño Gráfico Avanzado: Creación y Branding", "Explora técnicas avanzadas de diseño gráfico, abordando desde la creación artística hasta el branding y la identidad visual corporativa.",
+	"8 semanas", "Advanced", "2023-09-12 08:30:00", 1),
+	("Diseño Gráfico Advanced: Creación y Branding", "Explora técnicas avanzadas de diseño gráfico, abordando desde la creación artística hasta el branding y la identidad visual corporativa.",
 	"https://img.freepik.com/free-photo/man-drawing-tablet-side-view_23-2150040127.jpg?w=740&t=st=1702262193~exp=1702262793~hmac=e0cc0970a17d470384ebfea10df10b527add6ba0304013c314e7694ed114661f",
-	"8 semanas", "Avanzado", "2023-11-05 15:45:00", 2),
+	"8 semanas", "Advanced", "2023-11-05 15:45:00", 2),
 	("Marketing Digital: Estrategias y Analíticas", "Domina estrategias de marketing digital y analiza resultados para optimizar campañas en entornos digitales.",
 	"https://img.freepik.com/free-photo/corporate-management-strategy-solution-branding-concept_53876-167088.jpg?w=1380&t=st=1702262372~exp=1702262972~hmac=3b5f42fd7e30e384f2492d0bfb5e34aa1e9fa521a69e08efd99cbe366e061226",
-	"7 semanas", "Intermedio", "2023-02-18 10:00:00", 3),
+	"7 semanas", "Intermediate", "2023-02-18 10:00:00", 3),
 	("Fotografía Creativa - Explorando la Estética Visual", "Este curso explora la creatividad en la fotografía a través de la composición, el manejo de la luz y la experimentación visual. Aprenderás a desarrollar un ojo artístico para capturar momentos únicos y expresivos.",
 	"https://img.freepik.com/free-photo/professional-camera-blurred_169016-10249.jpg?w=1380&t=st=1702262650~exp=1702263250~hmac=726e6cd5613e1021b7441988528fe152e6831062def283c4ea8e55bf8592d9d7",
-	"4 semanas", "Principiante", "2023-05-29 14:20:00", 4),
+	"4 semanas", "Beginner", "2023-05-29 14:20:00", 4),
 	("Gestión Inteligente de Finanzas Personales", "Este curso proporciona herramientas prácticas para gestionar y optimizar las finanzas personales. Desde presupuestos hasta inversiones, aprenderás estrategias para tomar decisiones financieras sólidas y sostenibles en tu vida diaria.",
 	"https://img.freepik.com/free-photo/front-view-arrangement-economy-elements_23-2148793796.jpg?w=1380&t=st=1702262896~exp=1702263496~hmac=70ed73683cd7a41560ba3e474f2eaf55e71b32863ead613ab5d0667d3ced600f",
-	"5 semanas", "Principiante", "2023-12-28 11:50:00", 5),
+	"5 semanas", "Beginner", "2023-12-28 11:50:00", 5),
 	("Experiencia Gastronómica: Cocina Internacional", "Explora las diversas cocinas del mundo y aprende las técnicas culinarias de diferentes culturas. Desde platos clásicos hasta innovadoras fusiones, este curso te sumerge en un viaje culinario para descubrir sabores únicos y técnicas auténticas.",
 	"https://img.freepik.com/free-photo/view-chef-working-kitchen_23-2149728014.jpg?w=1380&t=st=1702263127~exp=1702263727~hmac=314e678fdff520d90911935dd231fff3a0fbb28c96363959e83ddf302a0b4b2b",
-	"10 semanas", "Intermedio", "2023-08-09 09:55:00", 6),
-	("Desarrollo Web Avanzado: Frameworks y Estructuras", "Domina frameworks y estructuras avanzadas para desarrollo web, aprende a crear aplicaciones complejas y escalables.",
+	"10 semanas", "Intermediate", "2023-08-09 09:55:00", 6),
+	("Desarrollo Web Advanced: Frameworks y Estructuras", "Domina frameworks y estructuras avanzadas para desarrollo web, aprende a crear aplicaciones complejas y escalables.",
 	"https://img.freepik.com/free-photo/html-css-collage-concept-with-person_23-2150062008.jpg?w=1380&t=st=1702263239~exp=1702263839~hmac=a8313f07ef7341c429cd7a1417628fe1cdb9cd0610f517a222a0bb1ba7bd3b6c",
-	"12 semanas", "Avanzado", "2023-01-06 13:25:00", 7),
+	"12 semanas", "Advanced", "2023-01-06 13:25:00", 7),
 	("Dominando la Inteligencia Artificial", "Adéntrate en el fascinante mundo de la inteligencia artificial. Desde algoritmos básicos hasta aprendizaje profundo, este curso te ofrece una comprensión completa de los conceptos fundamentales y las aplicaciones prácticas de la IA en diversos campos",
 	"https://img.freepik.com/free-vector/sphere-grid-wave-with-binary-code-ai-artificial-intelligence-logo-hand-machine-learning-concept_127544-855.jpg?w=1380&t=st=1702263446~exp=1702264046~hmac=ec5660204c49a61c8bb5089a74e6811ac5820464b47c9ca5d723f495a93c3906",
-	"12 semanas", "Avanzado", "2023-04-22 16:00:00", 8);
+	"12 semanas", "Advanced", "2023-04-22 16:00:00", 8);
 
--- Verificación de los datos de prueba en cursos
+-- Verifying test data in courses
 SELECT *
-FROM cursos;
+FROM courses;
 
--- Creación de la tabla lecciones
-CREATE TABLE lecciones (
-	id_lección INT AUTO_INCREMENT PRIMARY KEY,
-	orden INT,
-	titulo_lección VARCHAR(200) NOT NULL,
-	contenido_lección VARCHAR(255),
-	id_curso INT,
-	FOREIGN KEY (id_curso) REFERENCES cursos(id_curso)
+-- Creating the lessons table
+CREATE TABLE lessons (
+	id_lesson INT AUTO_INCREMENT PRIMARY KEY,
+	number INT,
+	lesson_title VARCHAR(200) NOT NULL,
+	lesson_content VARCHAR(255),
+	id_course INT,
+	FOREIGN KEY (id_course) REFERENCES courses(id_course)
 );
 
--- Insertar datos de prueba en lecciones
-INSERT INTO lecciones (orden, titulo_lección, contenido_lección, id_curso)
+-- Insert test data into lessons
+INSERT INTO lessons (number, lesson_title, lesson_content, id_course)
 	VALUES
 	(1, "Introducción a Python", "Conceptos básicos de Python, variables, tipos de datos, 
 	operadores, estructuras de control", 1),
@@ -137,7 +137,7 @@ INSERT INTO lecciones (orden, titulo_lección, contenido_lección, id_curso)
 	excepciones personalizadas", 1),
 	(6, "Manipulación de Archivos", "Lectura, escritura y manipulación de archivos en Python, 
 	operaciones con archivos, lectura y escritura de datos", 1),
-	(7, "Módulos Avanzados y Librerías", "Uso avanzado de módulos y librerías, uso de 
+	(7, "Módulos Advanceds y Librerías", "Uso avanzado de módulos y librerías, uso de 
 	librerías populares como NumPy, Pandas, Matplotlib", 1),
 	(8, "Desarrollo de Proyectos en Python", "Aplicaciones prácticas y proyectos, desarrollo 
 	de proyectos, mejores prácticas, recomendaciones de estudio adicional", 1),
@@ -193,7 +193,7 @@ INSERT INTO lecciones (orden, titulo_lección, contenido_lección, id_curso)
 	presupuestos, ahorro, planificación a corto y largo plazo", 5),
 	(2, "Gestión de Deudas y Créditos", "Estrategias para manejar deudas, tipos de deuda, 
 	reducción de deudas, uso responsable de tarjetas de crédito", 5),
-	(3, "Inversiones para Principiantes", "Conceptos básicos de inversión, diversificación, 
+	(3, "Inversiones para Beginners", "Conceptos básicos de inversión, diversificación, 
 	acciones, bonos, fondos de inversión", 5),
 	(4, "Planificación de Jubilación y Pensiones", "Preparándose para el futuro financiero,
 	planificación para la jubilación, planes de pensiones, seguros", 5),
@@ -223,7 +223,7 @@ INSERT INTO lecciones (orden, titulo_lección, contenido_lección, id_curso)
 	combinación de sabores, técnicas innovadoras", 6),
 	(1, "Fundamentos del Desarrollo Web", "Introducción al desarrollo web, HTML, CSS, 
 	JavaScript: conceptos básicos", 7),
-	(2, "Diseño Responsivo y CSS Avanzado", "Diseño adaptable y CSS avanzado, media queries, 
+	(2, "Diseño Responsivo y CSS Advanced", "Diseño adaptable y CSS avanzado, media queries, 
 	flexbox, grid, preprocesadores CSS", 7),
 	(3, "Fundamentos de JavaScript", "Fundamentos de programación con JavaScript, variables, 
 	condicionales, bucles, funciones", 7),
@@ -254,134 +254,134 @@ INSERT INTO lecciones (orden, titulo_lección, contenido_lección, id_curso)
 	(8, "Desarrollo de Proyectos de Inteligencia Artificial", "Pasos para desarrollar 
 	proyectos de IA, definición de problemas, selección de algoritmos, implementación práctica", 8);
 	
--- Verificación de los datos de prueba en lecciones
+-- Verifying test data in lessons
 SELECT *
-FROM lecciones;
+FROM lessons;
 
--- Creación de la tabla inscripciones
-CREATE TABLE inscripciones (
-	id_inscripción INT AUTO_INCREMENT PRIMARY KEY,
-	fecha_inscripción DATETIME DEFAULT CURRENT_TIMESTAMP,
-	estado_finalización ENUM ("Pendiente", "En progreso", "Completado") NOT NULL, 
-	calificación INT DEFAULT NULL,
-	fecha_finalización DATETIME DEFAULT NULL,
-	id_usuario INT,
-	id_curso INT,
-	FOREIGN KEY (id_usuario) REFERENCES usuarios(id_usuario),
-	FOREIGN KEY (id_curso) REFERENCES cursos(id_curso)
+-- Creation of the registration table
+CREATE TABLE registrations (
+	id_registration INT AUTO_INCREMENT PRIMARY KEY,
+	registration_date DATETIME DEFAULT CURRENT_TIMESTAMP,
+	state ENUM ("Pending", "In progress", "Finished") NOT NULL, 
+	grade INT DEFAULT NULL,
+	end_date DATETIME DEFAULT NULL,
+	id_user INT,
+	id_course INT,
+	FOREIGN KEY (id_user) REFERENCES users(id_user),
+	FOREIGN KEY (id_course) REFERENCES courses(id_course)
 );
 
--- Insertar datos de prueba en inscripciones
-INSERT INTO inscripciones (estado_finalización, calificación, fecha_finalización,
-	id_usuario, id_curso)
+-- Insert test data into registrations
+INSERT INTO registrations (state, grade, end_date,
+	id_user, id_course)
 	VALUES
-	("Pendiente", NULL, NULL, 2, 1),
-	("En progreso", NULL, NULL, 2, 2),
-	("Completado", 5, "2023-12-28 11:50:00", 3, 1),
-	("Pendiente", NULL, NULL, 4, 4),
-	("Pendiente", NULL, NULL, 4, 5),
-	("En progreso", NULL, NULL, 4, 8),
-	("En progreso", NULL, NULL, 5, 6),
-	("Pendiente", NULL, NULL, 5, 7),
-	("Completado", 4, "2023-10-22 9:40:00", 5, 8);
+	("Pending", NULL, NULL, 2, 1),
+	("In progress", NULL, NULL, 2, 2),
+	("Finished", 5, "2023-12-28 11:50:00", 3, 1),
+	("Pending", NULL, NULL, 4, 4),
+	("Pending", NULL, NULL, 4, 5),
+	("In progress", NULL, NULL, 4, 8),
+	("In progress", NULL, NULL, 5, 6),
+	("Pending", NULL, NULL, 5, 7),
+	("Finished", 4, "2023-10-22 9:40:00", 5, 8);
 
--- Verificación de los datos de prueba en inscripciones
+-- Verifying test data in registrations
 SELECT *
-FROM inscripciones;
+FROM registrations;
 
--- Actualización del número de estudiantes en cada curso debido a las inscripciones ingresadas
+-- Update of the number of students in each course due to the registrations entered
 
-UPDATE cursos AS c
-SET c.estudiantes_inscritos = (
+UPDATE courses AS c
+SET c.enrolled_students = (
     SELECT COUNT(*)
-    FROM inscripciones AS i
-    WHERE i.id_curso = c.id_curso
+    FROM registrations AS i
+    WHERE i.id_course = c.id_course
 )
-WHERE c.id_curso = 1;
+WHERE c.id_course = 1;
 
-UPDATE cursos AS c
-SET c.estudiantes_inscritos = (
+UPDATE courses AS c
+SET c.enrolled_students = (
     SELECT COUNT(*)
-    FROM inscripciones AS i
-    WHERE i.id_curso = c.id_curso
+    FROM registrations AS i
+    WHERE i.id_course = c.id_course
 )
-WHERE c.id_curso = 2;
+WHERE c.id_course = 2;
 
-UPDATE cursos AS c
-SET c.estudiantes_inscritos = (
+UPDATE courses AS c
+SET c.enrolled_students = (
     SELECT COUNT(*)
-    FROM inscripciones AS i
-    WHERE i.id_curso = c.id_curso
+    FROM registrations AS i
+    WHERE i.id_course = c.id_course
 )
-WHERE c.id_curso = 4;
+WHERE c.id_course = 4;
 
-UPDATE cursos AS c
-SET c.estudiantes_inscritos = (
+UPDATE courses AS c
+SET c.enrolled_students = (
     SELECT COUNT(*)
-    FROM inscripciones AS i
-    WHERE i.id_curso = c.id_curso
+    FROM registrations AS i
+    WHERE i.id_course = c.id_course
 )
-WHERE c.id_curso = 5;
+WHERE c.id_course = 5;
 
-UPDATE cursos AS c
-SET c.estudiantes_inscritos = (
+UPDATE courses AS c
+SET c.enrolled_students = (
     SELECT COUNT(*)
-    FROM inscripciones AS i
-    WHERE i.id_curso = c.id_curso
+    FROM registrations AS i
+    WHERE i.id_course = c.id_course
 )
-WHERE c.id_curso = 6;
+WHERE c.id_course = 6;
 
-UPDATE cursos AS c
-SET c.estudiantes_inscritos = (
+UPDATE courses AS c
+SET c.enrolled_students = (
     SELECT COUNT(*)
-    FROM inscripciones AS i
-    WHERE i.id_curso = c.id_curso
+    FROM registrations AS i
+    WHERE i.id_course = c.id_course
 )
-WHERE c.id_curso = 7;
+WHERE c.id_course = 7;
 
-UPDATE cursos AS c
-SET c.estudiantes_inscritos = (
+UPDATE courses AS c
+SET c.enrolled_students = (
     SELECT COUNT(*)
-    FROM inscripciones AS i
-    WHERE i.id_curso = c.id_curso
+    FROM registrations AS i
+    WHERE i.id_course = c.id_course
 )
-WHERE c.id_curso = 8;
+WHERE c.id_course = 8;
 
--- Creación de la tabla calificaciones
-CREATE TABLE calificaciones (
-	id_calificación INT AUTO_INCREMENT PRIMARY KEY,
-	calificación INT,
-	observaciones VARCHAR(255),
-	fecha_calificación DATETIME DEFAULT CURRENT_TIMESTAMP,
-	id_usuario INT,
-	id_curso INT,
-	FOREIGN KEY (id_usuario) REFERENCES usuarios(id_usuario),
-	FOREIGN KEY (id_curso) REFERENCES cursos(id_curso)
+-- Creation of the grades table
+CREATE TABLE grades (
+	id_grade INT AUTO_INCREMENT PRIMARY KEY,
+	grade INT,
+	observations VARCHAR(255),
+	grade_date DATETIME DEFAULT CURRENT_TIMESTAMP,
+	id_user INT,
+	id_course INT,
+	FOREIGN KEY (id_user) REFERENCES users(id_user),
+	FOREIGN KEY (id_course) REFERENCES courses(id_course)
 );
 
--- Insertar datos de prueba en calificaciones
-INSERT INTO calificaciones (calificación, observaciones, id_usuario, id_curso)
+-- Insert test data into grades
+INSERT INTO grades (grade, observations, id_user, id_course)
 	VALUES
 	(10, "Muy buen alumno, entregó en tiempo cada una de las actividades", 3, 1),
 	(9, "Trabajos perfectos, detalles en la asistencia y puntualidad", 5, 8);
 
--- Verificación de los datos de prueba en calificaciones
+-- Verification of test data in grades
 SELECT *
-FROM calificaciones;
+FROM grades;
 
--- Creación de la tabla comentarios
-CREATE TABLE comentarios (
-	id_comentario INT AUTO_INCREMENT PRIMARY KEY,
-	contenido_comentario VARCHAR(255),
-	fecha_comentario DATETIME DEFAULT CURRENT_TIMESTAMP,
-	id_usuario INT,
-	id_lección INT,
-	FOREIGN KEY (id_usuario) REFERENCES usuarios(id_usuario),
-	FOREIGN KEY (id_lección) REFERENCES lecciones(id_lección)
+-- Creating the comments table
+CREATE TABLE comments (
+	id_comment INT AUTO_INCREMENT PRIMARY KEY,
+	comment_content VARCHAR(255),
+	comment_date DATETIME DEFAULT CURRENT_TIMESTAMP,
+	id_user INT,
+	id_lesson INT,
+	FOREIGN KEY (id_user) REFERENCES users(id_user),
+	FOREIGN KEY (id_lesson) REFERENCES lessons(id_lesson)
 );
 
--- Insertar datos de prueba en comentarios
-INSERT INTO comentarios (contenido_comentario, id_usuario, id_lección)
+-- Insert test data in comments
+INSERT INTO comments (comment_content, id_user, id_lesson)
 	VALUES
 	("Porta lorem mollis aliquam ut porttitor leo a diam sollicitudin tempor id eu nisl 
 	nunc mi ipsum faucibus vitae aliquet", 2, 1),
@@ -402,36 +402,36 @@ INSERT INTO comentarios (contenido_comentario, id_usuario, id_lección)
 	("Porta lorem mollis aliquam ut porttitor leo a diam sollicitudin tempor id eu nisl 
 	nunc mi ipsum faucibus vitae aliquet", 5, 57);
 
--- Verificación de los datos de prueba en comentarios
+-- Verifying test data in comments
 SELECT *
-FROM comentarios;
+FROM comments;
 
--- Consulta de todos los comentarios de una lección
-SELECT c.id_comentario, c.contenido_comentario, l.titulo_lección, cr.titulo_curso 
-FROM comentarios AS c
-JOIN lecciones AS l ON c.id_lección = l.id_lección
-JOIN cursos AS cr ON l.id_curso = cr.id_curso
-WHERE l.id_lección = 57;
+-- Consultation of all the comments of a lesson
+SELECT c.id_comment, c.comment_content, l.lesson_title, cr.course_title 
+FROM comments AS c
+JOIN lessons AS l ON c.id_lesson = l.id_lesson
+JOIN courses AS cr ON l.id_course = cr.id_course
+WHERE l.id_lesson = 57;
 
-SELECT c.id_comentario, c.contenido_comentario, l.titulo_lección, cr.titulo_curso 
-FROM comentarios AS c
-JOIN lecciones AS l ON c.id_lección = l.id_lección
-JOIN cursos AS cr ON l.id_curso = cr.id_curso
-WHERE l.id_lección = 1;
+SELECT c.id_comment, c.comment_content, l.lesson_title, cr.course_title 
+FROM comments AS c
+JOIN lessons AS l ON c.id_lesson = l.id_lesson
+JOIN courses AS cr ON l.id_course = cr.id_course
+WHERE l.id_lesson = 1;
 
--- Consulta de las calificaciones de un usuario
-SELECT u.nombre, u.apellidos, c.calificación, c.observaciones, c.fecha_calificación
-FROM usuarios AS u
-INNER JOIN calificaciones AS c ON c.id_usuario = u.id_usuario 
-WHERE u.id_usuario = 3;
+-- Querying a user's ratings
+SELECT u.first_name, u.last_name, c.grade, c.observations, c.grade_date
+FROM users AS u
+INNER JOIN grades AS c ON c.id_user = u.id_user 
+WHERE u.id_user = 3;
 
--- Consulta de las lecciones de un curso
-SELECT l.orden, l.titulo_lección, l.contenido_lección, c.titulo_curso
-FROM lecciones AS l
-INNER JOIN cursos AS c ON c.id_curso = l.id_curso 
-WHERE c.id_curso = 1;
+-- Consultation of the lessons of a course
+SELECT l.number, l.lesson_title, l.lesson_content, c.course_title
+FROM lessons AS l
+INNER JOIN courses AS c ON c.id_course = l.id_course 
+WHERE c.id_course = 1;
 
-SELECT l.orden, l.titulo_lección, l.contenido_lección, c.titulo_curso
-FROM lecciones AS l
-INNER JOIN cursos AS c ON c.id_curso = l.id_curso 
-WHERE c.id_curso = 2;
+SELECT l.number, l.lesson_title, l.lesson_content, c.course_title
+FROM lessons AS l
+INNER JOIN courses AS c ON c.id_course = l.id_course 
+WHERE c.id_course = 2;
